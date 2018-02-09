@@ -1,12 +1,11 @@
+'use strict'
 const express = require('express');
-const Sequelize = require('sequelize');
 const app = express();
+
 
 app.set('port', process.env.PORT || 3110);
 
-
-
-
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('mainDB', null, null, {
     dialect: "sqlite",
@@ -21,34 +20,34 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
- 
 
+const Plant = require('./models/Plant')(sequelize, Sequelize);
+const Light = require('./models/Light')(sequelize, Sequelize);
 
-
-
-const Plant = sequelize.define('plant', {
-
-	plantType: {
-		type: Sequelize.STRING
-	},
-
-	datePlanted: {
-		type: Sequelize.DATE, defaultValue: Sequelize.NOW
-	},
-
-
+/*
+Light.create({
+	status: 'FFFF',
+	dateFrom: Date.now(),
+	dateTo: Date.now() + 100
 })
+.catch(errors => {
+	console.log(errors);
+})
+*/
 
+app.get('/api/lights', (req,res) => {
+	Light.findAll()
+		.then(lights => {
+			res.json(lights);
+		})
+});
 
-
-
-
-app.get('/', (req,res) => {
+app.get('/api/plants', (req,res) => {
 	Plant.findAll()
 		.then(plants => {
 			res.json(plants);
 		})
-})
+});
 
 app.listen(app.get('port'), () => {
     console.log(`Server is listening on localhost:${app.get('port')}`);
