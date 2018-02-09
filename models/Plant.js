@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.DATE, defaultValue: Sequelize.NOW
 		},
 
+		harvested: {
+			type: Sequelize.DATE
+		}
+
 
 	});
 
