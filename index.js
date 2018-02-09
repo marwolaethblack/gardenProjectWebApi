@@ -35,14 +35,14 @@ const Plant = require('./models/Plant')(sequelize, Sequelize);
 const Light = require('./models/Light')(sequelize, Sequelize);
 
 /*
-Light.create({
-	status: 'FFFF',
-	dateFrom: Date.now(),
-	dateTo: Date.now() + 100
+Plant.create({
+	plantType: 'Vegetable',
+	harvested: Date.now()
 })
 .catch(errors => {
 	console.log(errors);
 })
+
 */
 
 app.get('/', (req, res) => {
@@ -104,6 +104,7 @@ app.route('/api/plants')
 			})
 			.catch(errors => {
 				res.json(errors);
+				console.log(errors);
 			})
 	})
 	.post((req, res) => {
