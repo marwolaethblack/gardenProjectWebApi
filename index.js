@@ -40,12 +40,6 @@ const Plant = sequelize.define('plant', {
 })
 
 
-Plant.sync().then(() => {
-  // Table created
-  return Plant.create({
-    plantType: 'Vegetable',
-  });
-});
 
 
 
