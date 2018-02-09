@@ -3,11 +3,13 @@ module.exports = (sequelize, Sequelize) => {
 	const Plant = sequelize.define('plant', {
 
 		plantType: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
+			allowNull: false
 		},
 
 		datePlanted: {
-			type: Sequelize.DATE, defaultValue: Sequelize.NOW
+			type: Sequelize.DATE, defaultValue: Sequelize.NOW,
+			allowNull: false
 		},
 
 		harvested: {

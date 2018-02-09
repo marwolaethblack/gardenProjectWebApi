@@ -1,8 +1,11 @@
 'use strict'
 const express = require('express');
 const compression = require('compression')
+const bodyParser = require('body-parser')
 const app = express();
+
 app.use(compression());
+app.use(bodyParser.json());
 
 
 
@@ -48,6 +51,21 @@ app.get('/api/lights', (req,res) => {
 		})
 });
 
+app.post('/api/lights', (req, res) => {
+
+	const body = req.body;
+
+	Light.create({
+		...body
+	})
+	.then(createdLight => {
+		res.json(createdLight);
+	})
+	.catch(err => {
+		res.json(err);
+	})
+})
+
 app.get('/api/plants', (req,res) => {
 	Plant.findAll()
 		.then(plants => {
@@ -57,6 +75,21 @@ app.get('/api/plants', (req,res) => {
 			res.json(errors);
 		})
 });
+
+app.post('api/plants', (req, res) => {
+
+	const body = req.body;
+
+	Plant.create({
+		...body
+	})
+	.then(createdPlant => {
+		res.json(createdPlant);
+	})
+	.catch(err => {
+		res.json(err);
+	})
+})
 
 app.listen(app.get('port'), () => {
     console.log(`Server is listening on localhost:${app.get('port')}`);

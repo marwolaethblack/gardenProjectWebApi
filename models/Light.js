@@ -10,12 +10,14 @@ module.exports = (sequelize, Sequelize) => {
 				  msg: "Value must be On or Off"
 				}
 
-			}
+			},
+			allowNull: false
 		},
 
 
 		dateFrom: {
-			type: Sequelize.DATE
+			type: Sequelize.DATE,
+			allowNull: false
 		}
 
 	});
