@@ -40,12 +40,18 @@ app.get('/api/lights', (req,res) => {
 		.then(lights => {
 			res.json(lights);
 		})
+		.catch(errors => {
+			res.json(errors);
+		})
 });
 
 app.get('/api/plants', (req,res) => {
 	Plant.findAll()
 		.then(plants => {
 			res.json(plants);
+		})
+		.catch(errors => {
+			res.json(errors);
 		})
 });
 
