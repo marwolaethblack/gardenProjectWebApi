@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+</head>
+<body >
+	<div class="container">
+		<h1>Documentation</h1>
+
+	  <% routes.forEach(route => { %>
+
+	  	<h4><%= route.path %></h4>
+
+	  	<% if(route.path.indexOf("light") !== -1) { %>
+
+	  		<p><%= light.name %></p>
+	  		<% Object.keys(light).forEach((key, index) => {%>
+	  			<%= key === "name" ? "" : key %>
+
+	  			<% if(key !== "name") { %>
+	  			<ul>
+	  				<li>type: <%= light[key].type %></li>
+	  				<li>allowNull: <%= light[key].allowNull %></li>
+	  			</ul>
+	  			<% }%>
+	  			<% })%>
+	  	<% } %>
+
+	  	<% if(route.path.indexOf("plant") !== -1) { %>
+
+	  		<p><%= plant.name %></p>
+	  		<% Object.keys(plant).forEach((key, index) => {%>
+	  			<%= key === "name" ? "" : key %>
+
+	  			<% if(key !== "name") { %>
+	  			<ul>
+	  				<li>type: <%= plant[key].type %></li>
+	  				<li>allowNull: <%= plant[key].allowNull %></li>
+	  			</ul>
+	  			<% }%>
+	  			<% })%>
+	  	<% } %>
+
+	  	<h5>Allowed methods</h5>
+
+	  	<% Object.keys(route.methods).forEach(m => { %>
+	  		<p> <%= m %></p>
+	  	<%}) %>
+
+	  <% });%>
+
+	</div>
+</body>
+</html>
