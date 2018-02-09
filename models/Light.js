@@ -16,10 +16,6 @@ module.exports = (sequelize, Sequelize) => {
 
 		dateFrom: {
 			type: Sequelize.DATE
-		},
-
-		dateTo: {
-			type: Sequelize.DATE
 		}
 
 	});
