@@ -4,52 +4,77 @@
     <meta charset="UTF-8">
     <title>Documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <style>
+    .route-model {
+    	display: flex;
+    	flex-direction: row;
+    	justify-content: space-between;
+    	margin: 1em;
+    }
+    .model {
+    	background: #EEE;
+    	width: 40%;
+    	padding: 1em;
+    }
+
+    </style>
 </head>
 <body >
 	<div class="container">
 		<h1>Documentation</h1>
 
+	<secton class="routes">
 	  <% routes.forEach(route => { %>
 
-	  	<h4><%= route.path %></h4>
+	  	<div class="route-model">
+		  	<div class="route">
 
-	  	<% if(route.path.indexOf("light") !== -1) { %>
+			  	<h4><%= route.path %></h4>
 
-	  		<p><%= light.name %></p>
-	  		<% Object.keys(light).forEach((key, index) => {%>
-	  			<%= key === "name" ? "" : key %>
+			  	<p>Allowed methods:</p>
 
-	  			<% if(key !== "name") { %>
-	  			<ul>
-	  				<li>type: <%= light[key].type %></li>
-	  				<li>allowNull: <%= light[key].allowNull %></li>
-	  			</ul>
-	  			<% }%>
-	  			<% })%>
-	  	<% } %>
+			  	<% Object.keys(route.methods).forEach(m => { %>
+			  		<p><strong> <%= m.toUpperCase() %></strong></p>
+			  	<%}) %>
 
-	  	<% if(route.path.indexOf("plant") !== -1) { %>
+		  	</div>
 
-	  		<p><%= plant.name %></p>
-	  		<% Object.keys(plant).forEach((key, index) => {%>
-	  			<%= key === "name" ? "" : key %>
 
-	  			<% if(key !== "name") { %>
-	  			<ul>
-	  				<li>type: <%= plant[key].type %></li>
-	  				<li>allowNull: <%= plant[key].allowNull %></li>
-	  			</ul>
-	  			<% }%>
-	  			<% })%>
-	  	<% } %>
+		  	<% if(route.path.indexOf("light") !== -1) { %>
+		  	<div class="model">
+		  		<p><%= light.name %></p>
+		  		<% Object.keys(light).forEach((key, index) => {%>
+		  			<%= key === "name" ? "" : key %>
 
-	  	<h5>Allowed methods</h5>
+		  			<% if(key !== "name") { %>
+		  			<ul>
+		  				<li>type: <%= light[key].type %></li>
+		  				<li>allowNull: <%= light[key].allowNull %></li>
+		  			</ul>
+		  			<% }%>
+		  			<% })%>
+		  	</div>
+		  	<% } %>
 
-	  	<% Object.keys(route.methods).forEach(m => { %>
-	  		<p> <%= m %></p>
-	  	<%}) %>
+		  	<% if(route.path.indexOf("plant") !== -1) { %>
+		  	<div class="model">
+		  		<p><%= plant.name %></p>
+		  		<% Object.keys(plant).forEach((key, index) => {%>
+		  			<%= key === "name" ? "" : key %>
+
+		  			<% if(key !== "name") { %>
+		  			<ul>
+		  				<li>type: <%= plant[key].type %></li>
+		  				<li>allowNull: <%= plant[key].allowNull %></li>
+		  			</ul>
+		  			<% }%>
+		  			<% })%>
+		  	</div>
+		  	<% } %>
+		  </div>
 
 	  <% });%>
+	</secton>
 
 	</div>
 </body>
