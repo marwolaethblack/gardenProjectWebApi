@@ -17,10 +17,20 @@ app.set('port', process.env.PORT || 3110);
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('mainDB', null, null, {
-    dialect: "sqlite",
-    storage: './db.sqlite',
-});
+let sequelize;
+
+if(process.env.NODE_ENV === "production") {
+	sequelize = new Sequelize(process.env.DATABASE_URL, {
+		dialect: 'postgres'
+	})
+} else {
+	sequelize = new Sequelize('mainDB', null, null, {
+	    dialect: "sqlite",
+	    storage: './db.sqlite',
+	});
+}
+
+
 
 sequelize
   .authenticate()
