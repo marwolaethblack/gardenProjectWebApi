@@ -36,13 +36,13 @@ const Light = require('./models/Light')(sequelize, Sequelize);
 const Temperature = require('./models/Temperature')(sequelize, Sequelize);
 const Image = require('./models/Image')(sequelize, Sequelize);
 
-
-Image.create({
-	url: "www.google.com/asdjsajdjas"
-})
-.catch(errors => {
-	console.log(errors);
-})
+//
+// Image.create({
+// 	url: "www.google.com/asdjsajdjas"
+// })
+// .catch(errors => {
+// 	console.log(errors);
+// })
 
 
 
