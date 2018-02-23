@@ -71,6 +71,41 @@
 		  			<% })%>
 		  	</div>
 		  	<% } %>
+
+
+            <% if(route.path.indexOf("temperature") !== -1) { %>
+			<div class="model">
+				<p><%= temperature.name %></p>
+                <% Object.keys(temperature).forEach((key, index) => {%>
+                <%= key === "name" ? "" : key %>
+
+                <% if(key !== "name") { %>
+				<ul>
+					<li>type: <%= temperature[key].type %></li>
+					<li>allowNull: <%= temperature[key].allowNull %></li>
+				</ul>
+                <% }%>
+                <% })%>
+			</div>
+            <% } %>
+
+            <% if(route.path.indexOf("image") !== -1) { %>
+			<div class="model">
+				<p><%= image.name %></p>
+                <% Object.keys(image).forEach((key, index) => {%>
+                <%= key === "name" ? "" : key %>
+
+                <% if(key !== "name") { %>
+				<ul>
+					<li>type: <%= image[key].type %></li>
+					<li>allowNull: <%= image[key].allowNull %></li>
+				</ul>
+                <% }%>
+                <% })%>
+			</div>
+            <% } %>
+
+
 		  </div>
 
 	  <% });%>
